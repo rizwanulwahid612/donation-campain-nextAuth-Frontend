@@ -1,27 +1,39 @@
-
 "use client"
 import ActionBar from "@/components/ui/ActionBar/ActionBar";
-import { Card, Col, Input, Rate, Row } from "antd";
+import { Button, Card, Col, Input, Rate, Row } from "antd";
 import Meta from "antd/es/card/Meta";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useDebounced } from "../Debounced/Debounced";
+import { ReloadOutlined } from "@ant-design/icons";
+import { useDonationsQuery } from "@/redux/api/donationApi";
 
-export const Homepage = async({posts}:{posts:any}) => {
+export const Homepage = ({posts}:{posts:any}) => {
+     const query: Record<string, any> = {};
+     const {data,isLoading}= useDonationsQuery({query})
+    
+     console.log("datas",data)
     const [searchTerm, setSearchTerm] = useState<string>('');
-    //const session = await getServerSession(authOptions);
-  //console.log( "session:",session);
+   const debouncedSearchTerm = useDebounced({
+    searchQuery: searchTerm,
+    delay: 600,
+  });
+   if (!!debouncedSearchTerm) {
+    query["searchTerm"] = debouncedSearchTerm;
+  }
+   const resetFilters = () => {
    
-   // console.log(posts?.data)
-   const catData = posts?.data?.map((d:any)=>d)
-  console.log("gfsghfppppp",catData)
-   //console.log("meta:",cartMeta)
+     setSearchTerm('');
+   };
+    if(isLoading){
+      return <div>Loading...</div>
+     }
+  
+   const catData = posts
 
- // const name=searchParams['name'] ?? ''
-
-  const entries= catData
   return (
-    // <div>{posts?.data?.length}</div>
+    
 
     <div>
   <ActionBar title="Service List">
@@ -36,13 +48,24 @@ export const Homepage = async({posts}:{posts:any}) => {
              width: '20%',
            }}
          />
+         <div>
+           {( !!searchTerm) && (
+             <Button
+               style={{ margin: '0px 5px' }}
+               type="primary"
+               onClick={resetFilters}
+             >
+               <ReloadOutlined />
+             </Button>
+           )}
+         </div>
       </ActionBar>   
       
             <div style={{margin:"20px"}}>
        <Row gutter={6} style={{ margin: 0 }}>
 
   {
-      entries.filter((categorydata:any)=>{
+      catData?.data?.filter((categorydata:any)=>{
         if(searchTerm ==""){
            return categorydata;
         }else if(categorydata.category.toLowerCase().includes(searchTerm.toLowerCase())){

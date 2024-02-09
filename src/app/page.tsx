@@ -12,7 +12,7 @@ export default async function Home() {
     <div>
       <PublicHeader />
       <div className="min-h-[calc(100vh-64px)]">
-        <PublicHomepage/>
+        <PublicHomepage session={session}/>
          </div>
       
     </div>
