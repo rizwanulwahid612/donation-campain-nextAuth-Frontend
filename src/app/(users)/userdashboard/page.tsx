@@ -1,10 +1,10 @@
-import { Homepage } from "@/components/view/Home/Home"
+//import { Homepage } from "@/components/view/Home/Home"
 
 
 const UserDashboardpage = () => {
   return (
     <div>
-      <Homepage/>
+      <h1>UserDashboard</h1>
     </div>
   )
 }
