@@ -45,7 +45,7 @@ export const PublicHomepage = ({session}:{session:any}) => {
     
 
     <div>
-  <ActionBar title="Service List">
+  <ActionBar title="Donation List">
      
          <Input
           id="searchInput"

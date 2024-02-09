@@ -36,7 +36,7 @@ export const Homepage = ({posts}:{posts:any}) => {
     
 
     <div>
-  <ActionBar title="Service List">
+  <ActionBar title="Donation List">
      
          <Input
           id="searchInput"
