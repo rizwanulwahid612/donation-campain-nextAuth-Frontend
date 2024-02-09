@@ -1,9 +1,16 @@
 import { Homepage } from '@/components/view/Home/Home'
 import React from 'react'
 
-const DonationsHome = () => {
+const DonationsHome = async() => {
+   const res = await fetch("http://localhost:5000/api/v1/donations", {
+        
+        next: {
+            revalidate: 5,
+        }
+    });
+    const posts = await res.json();
   return (
-    <div><Homepage/></div>
+    <div><Homepage posts={posts}/></div>
   )
 }
 
