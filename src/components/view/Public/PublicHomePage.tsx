@@ -91,7 +91,7 @@ export const PublicHomepage = ({session}:{session:any}) => {
                  title={''}
                  hoverable
                  
-                 cover={<Image alt="example" src={categorydata?.profileImage} width={420} height={300} /> }
+                 cover={<Image alt="example" src={categorydata?.image} width={420} height={300} /> }
                >
                
                  <Meta title={categorydata?.name} />

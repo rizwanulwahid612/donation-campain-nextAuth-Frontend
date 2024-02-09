@@ -74,14 +74,14 @@ export const Homepage = ({posts}:{posts:any}) => {
       })
       .map((categorydata:any,i:any)=>(
              <Col xs={24} sm={24} md={12} lg={6}  span={8} key={categorydata?.d} style={{ marginBottom: "20px" }}>
-              <Link key={''} href={`category/service/services/${categorydata?._id}`}>
+              
                    {/* <Button>Go to Service</Button> */}
                  
                <Card
                  title={''}
                  hoverable
                  
-                 cover={<Image alt="example" src={categorydata?.profileImage} width={420} height={300} /> }
+                 cover={<Image alt="example" src={categorydata?.image} width={420} height={300} /> }
                >
                
                  <Meta title={categorydata?.name} />
@@ -89,9 +89,10 @@ export const Homepage = ({posts}:{posts:any}) => {
                  <p>appointmentdaysInWeek:{categorydata?.apointmentdaysInWeek}</p>
                  <p>Categories:{categorydata?.categoryIds?.map((c:any,i:any)=>(<div key={i}><p>{c?.name}</p></div>))}</p>
                  <Rate allowHalf defaultValue={4.5} />
-                 
+                  <Link key={''} href={`/donationshome/${categorydata?._id}`}><Button type="primary" danger>viewDetails</Button></Link>
                </Card>
-               </Link>
+
+             
              </Col>
            ))}
         </Row>

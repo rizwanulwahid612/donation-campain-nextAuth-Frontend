@@ -49,7 +49,8 @@ export const config = {
     "/",
     "/login",
     "/register",
-    //patient routes
+    //user routes
+    "/donationshome",
     "/userdashboard",
     "/my-profile",
     //doctor routes

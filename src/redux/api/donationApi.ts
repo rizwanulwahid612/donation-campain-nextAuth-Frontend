@@ -15,6 +15,7 @@ export const donationApi = baseApi.injectEndpoints({
           params: arg,
         };
       },
+
       // transformResponse: (response: IDonation[], meta: IMeta) => {
       //   return {
       //     donations: response,
