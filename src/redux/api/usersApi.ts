@@ -16,11 +16,31 @@ export const usersApi = baseApi.injectEndpoints({
         };
       },
     }),
+    createUserData: build.mutation({
+      query: (data) => ({
+        url: "/users/create-user",
+        method: "POST",
+        data,
+        // contentType: "multipart/form-data",
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
+    createAdminData: build.mutation({
+      query: (data) => ({
+        url: "/users/create-admin",
+        method: "POST",
+        data,
+        // contentType: "multipart/form-data",
+      }),
+      invalidatesTags: [tagTypes.admin],
+    }),
   }),
 });
 
 export const {
   useUsersQuery,
+  useCreateUserDataMutation,
+  useCreateAdminDataMutation,
   //useAddCategoryMutation,
   //useCategoryQuery,
   //useDeleteCategoryMutation,

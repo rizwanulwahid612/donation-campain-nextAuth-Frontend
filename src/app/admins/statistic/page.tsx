@@ -1,9 +1,16 @@
 
+import PieChartsPage from "@/components/PieChart/PieChart"
+
+
 
 const StatisticPage = () => {
+  
   return (
-    <div>StatisticPage</div>
+    <>
+      <PieChartsPage/>
+    </>
   )
 }
 
 export default StatisticPage
+

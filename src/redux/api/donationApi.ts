@@ -15,56 +15,60 @@ export const donationApi = baseApi.injectEndpoints({
           params: arg,
         };
       },
-
-      // transformResponse: (response: IDonation[], meta: IMeta) => {
-      //   return {
-      //     donations: response,
-      //     meta,
-      //   };
-      // },
-      //   providesTags: [tagTypes.donations],
-      // }),
-      // // get single academic department
-      // category: build.query({
-      //   query: (id: string | string[] | undefined) => ({
-      //     url: `${DONATION_URL}/${id}`,
-      //     method: "GET",
-      //   }),
-      //   providesTags: [tagTypes.category],
-      // }),
-      // // create a new academic department
-      // addCategory: build.mutation({
-      //   query: (data) => ({
-      //     url: "/services/create-service",
-      //     method: "POST",
-      //     data,
-      //   }),
-      //   invalidatesTags: [tagTypes.category],
-      // }),
-      // // update ac department
-      // updateCategory: build.mutation({
-      //   query: (data) => ({
-      //     url: `${DONATION_URL}/${data.id}`,
-      //     method: "PATCH",
-      //     data: data.body,
-      //   }),
-      //   invalidatesTags: [tagTypes.category],
-      // }),
-
-      // // delete ac department
-      // deleteCategory: build.mutation({
-      //   query: (id) => ({
-      //     url: `${DONATION_URL}/${id}`,
-      //     method: "DELETE",
-      //   }),
-      //   invalidatesTags: [tagTypes.category],
     }),
+    deleteDonation: build.mutation({
+      query: (id) => ({
+        url: `${DONATION_URL}/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [tagTypes.donations],
+    }),
+    // transformResponse: (response: IDonation[], meta: IMeta) => {
+    //   return {
+    //     donations: response,
+    //     meta,
+    //   };
+    // },
+    //   providesTags: [tagTypes.donations],
+    // }),
+    // // get single academic department
+    donation: build.query({
+      query: (id: string | string[] | undefined) => ({
+        url: `${DONATION_URL}/${id}`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.donations],
+    }),
+    // // create a new academic department
+    addDonation: build.mutation({
+      query: (data) => ({
+        url: "/donations/create-donate",
+        method: "POST",
+        data,
+      }),
+      invalidatesTags: [tagTypes.donations],
+    }),
+    // // update ac department
+    updateDonation: build.mutation({
+      query: (data) => ({
+        url: `${DONATION_URL}/${data.id}`,
+        method: "PATCH",
+        data: data.body,
+      }),
+      invalidatesTags: [tagTypes.donations],
+    }),
+
+    // // delete ac department
   }),
 });
 
 export const {
-  //useAddCategoryMutation,
+  useAddDonationMutation,
   useDonationsQuery,
+  useDonationQuery,
+  useUpdateDonationMutation,
+  useDeleteDonationMutation,
+  //useDeleteDonatMutation,
   //useCategoryQuery,
   //useDeleteCategoryMutation,
   //useUpdateCategoryMutation,

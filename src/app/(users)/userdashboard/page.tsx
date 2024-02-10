@@ -1,12 +1,26 @@
-//import { Homepage } from "@/components/view/Home/Home"
+
+//import UserDashboardPage from "@/components/view/userDashboardPage/userDashboardPage";
+
+import { authOptions } from "@/app/lib/AuthOptions";
+import UserDashboardPage from "@/components/view/UserDashboardPage/UserDashboardPage";
+import { getServerSession } from "next-auth";
 
 
-const UserDashboardpage = () => {
+const UserDashboard = async() => {
+   const session = await getServerSession(authOptions);
+    console.log( "session:",session);
+  const res = await fetch("http://localhost:5000/api/v1/postdonations", {
+        //cache:"no-store"
+        next: {
+            revalidate: 1,
+        }
+    });
+    const posts = await res.json();
   return (
     <div>
-      <h1>UserDashboard</h1>
+      <UserDashboardPage posts={posts} session={session}/>
     </div>
   )
 }
 
-export default UserDashboardpage
+export default UserDashboard
