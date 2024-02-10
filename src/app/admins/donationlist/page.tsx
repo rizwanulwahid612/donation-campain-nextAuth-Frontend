@@ -202,7 +202,7 @@ const DonationPage = () => {
           }}
         />
         <div>
-          <Link href="/super_admin/create">
+          <Link href="/admins/donationlist/create">
             <Button type="primary">Create Donation</Button>
           </Link>
           {(!!sortBy || !!sortOrder || !!searchTerm) && (

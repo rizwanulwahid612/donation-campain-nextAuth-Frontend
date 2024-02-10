@@ -185,7 +185,7 @@ const AdminsPage = () => {
           }}
         />
         <div>
-          <Link href="/super_admin/create">
+          <Link href="/admins/create">
             <Button type="primary">Create Admin</Button>
           </Link>
           {(!!sortBy || !!sortOrder || !!searchTerm) && (
