@@ -4,17 +4,18 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 type FieldType = {
-  name?:string;
-  image?:string;
-  email?: string;
-  password?: string;
+  title: string;
+  category: string;
+  image: string;
+  price?: string;
+  description: string;
 };
 const DonationCreate = () => {
  const router = useRouter();
   const onFinish = async (values: FormData) => {
     console.log(values)
     try {
-      const response = await fetch('http://localhost:5000/api/v1/users/create-admin', {
+      const response = await fetch('http://localhost:5000/api/v1/donations/create-donate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,8 +27,9 @@ const DonationCreate = () => {
         message.error("Donation was not created")
       }else{
         router.refresh();
+        router.push("/admins/donationlist");
       
-      message.success("Admin created SuccessFully")
+      message.success("Donation created SuccessFully")
       }
 
       const responseData = await response.json();
@@ -43,7 +45,7 @@ const DonationCreate = () => {
   };
   return (
     <div>
-      <h1 style={{marginBottom:"30px"}}>Create Admin Form</h1>
+      <h1 style={{marginBottom:"30px"}}>Create Donation Form</h1>
     <Form
       name="basic"
       labelCol={{ span: 8 }}
@@ -55,33 +57,41 @@ const DonationCreate = () => {
       autoComplete="off"
     >
       <Form.Item<FieldType>
-        label="Name"
-        name="name"
-        rules={[{ required: true, message: "Please input your Name!" }]}
+        label="Title"
+        name="title"
+        rules={[{ required: true, message: "Please input Title!" }]}
       >
         <Input type="text" />
       </Form.Item>
       <Form.Item<FieldType>
         label="Image"
         name="image"
-        rules={[{ required: true, message: "Please input your Image url!" }]}
+        rules={[{ required: true, message: "Please input Image url!" }]}
       >
         <Input type="text" />
       </Form.Item>
       <Form.Item<FieldType>
-        label="Email"
-        name="email"
-        rules={[{ required: true, message: "Please input your email!" }]}
+        label="Price"
+        name="price"
+        rules={[{ required: true, message: "Please input Price!" }]}
       >
-        <Input type="email" />
+        <Input type="text" />
       </Form.Item>
 
       <Form.Item<FieldType>
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: "Please input your password!" }]}
+        label="Category"
+        name="category"
+        rules={[{ required: true, message: "Please input Category!" }]}
       >
-        <Input.Password />
+        <Input type="text" />
+      </Form.Item>
+
+      <Form.Item<FieldType>
+        label="Description"
+        name="description"
+        rules={[{ required: true, message: "Please input Description!" }]}
+      >
+        <Input type="text" />
       </Form.Item>
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

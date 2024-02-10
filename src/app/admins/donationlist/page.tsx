@@ -192,7 +192,7 @@ const DonationPage = () => {
           },
         ]}
       /> */}
-      <ActionBar title="Admin List">
+      <ActionBar title="Donation List">
         <Input
           size="large"
           placeholder="Search"
