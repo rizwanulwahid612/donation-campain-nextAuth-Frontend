@@ -1,6 +1,7 @@
 "use client";
 import { Button, Form, Input } from "antd";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -31,6 +32,8 @@ const LoginForm: React.FC = () => {
   };
 
   return (
+     <div style={{display:"block"}}>
+      <h1 style={{marginBottom:"30px"}}>Login Form</h1>
     <Form
       name="basic"
       labelCol={{ span: 8 }}
@@ -63,6 +66,10 @@ const LoginForm: React.FC = () => {
         </Button>
       </Form.Item>
     </Form>
+    <div style={{display:"flex"}}>
+    <p>If you did not Registered!,Please...</p><Link href="/register">Register </Link>
+    </div>
+    </div>
   );
 };
 
