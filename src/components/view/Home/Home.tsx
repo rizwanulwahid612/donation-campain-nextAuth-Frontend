@@ -108,15 +108,11 @@ export const Homepage = ({posts}:{posts:any}) => {
       </Row>
       {catData.data.length > 4 && !showAll && (
         <div style={{display:"flex",justifyContent:"center"}}>
-         <Button type="primary" onClick={() => setShowAll(true)}>See More</Button>
+         <Button type="primary" onClick={() => setShowAll(true)}>See All</Button>
         </div>
         
       )}
     </div>
-
-
-
-
 
         </div>
 
