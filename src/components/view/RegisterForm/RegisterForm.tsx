@@ -1,8 +1,10 @@
 "use client"
-import { Button, Form, Input, message } from 'antd';
+import { Button, Col, Form, Input, Row, message } from 'antd';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React from 'react'
+import signinimg from "../../../assets/Sign up-bro.svg"
+import conte from '../../../styles/singleproduct.module.css'
 type FieldType = {
   name?:string;
   image?:string;
@@ -42,8 +44,22 @@ const RegisterForm = () => {
     console.log("Failed:", errorInfo);
   };
   return (
+       <Row
+    className={conte.container}
+      justify="space-between"
+      align="middle"
+      style={{
+        minHeight: "0vh",
+      }}
+    >
+      
+      <Col sm={12} md={16} lg={10} style={{marginTop:"180px"}}>
+         <Image src={signinimg} alt="" width={400} height={300}/>
+      </Col>
+      <Col>
+      
     <div style={{display:"block"}}>
-      <h1 style={{marginBottom:"30px"}}>Registration Form</h1>
+      <h1>Register</h1>
     <Form
       name="basic"
       labelCol={{ span: 8 }}
@@ -94,6 +110,8 @@ const RegisterForm = () => {
     <p>If you are already Registered!,Please...</p><Link href="/login">Login </Link>
     </div>
     </div>
+    </Col>
+    </Row>
   )
 }
 

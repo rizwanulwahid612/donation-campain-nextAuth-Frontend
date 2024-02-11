@@ -1,10 +1,11 @@
 "use client";
-import { Button, Form, Input } from "antd";
+import { Button, Col, Form, Input, Row } from "antd";
 import { signIn } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
-
+import logImage from "../../../assets/Computer login-bro.svg";
+import conte from '../../../styles/singleproduct.module.css'
 type FieldType = {
   email?: string;
   password?: string;
@@ -32,9 +33,29 @@ const LoginForm: React.FC = () => {
   };
 
   return (
+     <Row
+    className={conte.container}
+      justify="space-between"
+      align="middle"
+      style={{
+        minHeight: "10vh",
+      }}
+    >
+      <Col sm={12} md={16} lg={10}>
+         <Image src={logImage} alt="" width={400} height={300}/>
+      </Col>
+      <Col>
+        <h1
+          style={{
+            margin: "0px 0px",
+          }}
+        >
+          Login
+        </h1>
      <div style={{display:"block"}}>
-      <h1 style={{marginBottom:"30px"}}>Login Form</h1>
+     
     <Form
+    
       name="basic"
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
@@ -43,6 +64,7 @@ const LoginForm: React.FC = () => {
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
+      
     >
       <Form.Item<FieldType>
         label="Email"
@@ -70,6 +92,8 @@ const LoginForm: React.FC = () => {
     <p>If you did not Registered!,Please...</p><Link href="/register">Register </Link>
     </div>
     </div>
+    </Col>
+    </Row>
   );
 };
 
