@@ -12,7 +12,7 @@ const StatisticPage = async() => {
     console.log( "session:",session);
   const res = await fetch("http://localhost:5000/api/v1/postdonations", {
         next: {
-            revalidate: 1,
+            revalidate: 2,
         }
     });
     const posts = await res.json();
@@ -21,7 +21,7 @@ const StatisticPage = async() => {
     const result = await fetch("http://localhost:5000/api/v1/donations", {
         
         next: {
-            revalidate: 5,
+            revalidate: 2,
         }
     });
     const posts2 = await result.json();

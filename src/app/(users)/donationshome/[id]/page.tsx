@@ -7,7 +7,11 @@ import Image from "next/image"
 import Link from "next/link"
 
 export async function generateStaticParams() {
-    const res = await fetch("http://localhost:5000/api/v1/donations")
+    const res = await fetch("http://localhost:5000/api/v1/donations",{
+        next:{
+            revalidate:2
+        }
+    })
     const postdata = await res.json()
     const ids = postdata?.data?.map((post:any) => {
         return {
@@ -20,7 +24,9 @@ export async function generateStaticParams() {
 }
 const PostpageById = async ({ params }:{params:any}) => {
     console.log("params:",params.id)
-    const res = await fetch(`http://localhost:5000/api/v1/donations/${params.id}`)
+    const res = await fetch(`http://localhost:5000/api/v1/donations/${params.id}`,{
+        cache:"no-store"
+    })
     const postby = await res.json()
     console.log("postbyId:",postby?.data)
     const singleData= postby?.data

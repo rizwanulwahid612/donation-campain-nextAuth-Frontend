@@ -7,7 +7,7 @@ const hybridRoutes = ["/", "/login", "/register"];
 const userAccesibleRoutes = ["/donationshome", "/userdashboard", "/my-profile"];
 const rolesRedirect: Record<string, unknown> = {
   // doctor: `http://localhost:3000/doctor/dashboard`,
-  user: `http://localhost:3000/userdashboard`,
+  user: `http://localhost:3000/my-profile`,
   admin: `http://localhost:3000/admins/my-profile`,
 };
 export async function middleware(request: NextRequest) {

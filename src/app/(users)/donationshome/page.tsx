@@ -5,7 +5,7 @@ const DonationsHome = async() => {
    const res = await fetch("http://localhost:5000/api/v1/donations", {
         
         next: {
-            revalidate: 5,
+            revalidate: 2,
         }
     });
     const posts = await res.json();

@@ -12,7 +12,7 @@ const UserDashboard = async() => {
   const res = await fetch("http://localhost:5000/api/v1/postdonations", {
         //cache:"no-store"
         next: {
-            revalidate: 1,
+            revalidate: 2,
         }
     });
     const posts = await res.json();

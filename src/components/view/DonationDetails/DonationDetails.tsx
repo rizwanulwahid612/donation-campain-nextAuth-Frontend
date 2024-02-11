@@ -11,7 +11,7 @@ const DonationDetails = ({singleData,session}:{singleData:any,session:any}) => {
  const {data:userss,isLoading}=useUsersQuery({...query})
 
 const userdata: any = userss?.data?.map((dam:any) => {
-  if (dam?.email === session.email) {
+  if (dam?.email === session?.email) {
     return dam;
   }
 }).filter(Boolean);
@@ -69,15 +69,14 @@ const handlegivedonation = async(id:any) => {
 
              <Col xs={24} sm={24} md={24} lg={24}  span={8} style={{ marginBottom: "20px" }}>    
                <Card
-                 title={''}
+                 title={singleData?.category}
                  hoverable
-                 cover={<Image alt="example" src={singleData?.image} width={320} height={300} /> }
+                 cover={<Image alt="example" src={singleData?.image} width={520} height={400} /> }
                >
-                 <Meta title={singleData?.title} />
-                 <p>Name:{singleData?.name}</p><p>Price:{singleData?.price}</p>Location:<p>{singleData?.location}</p><p>Details:{singleData?.details}</p>Start Time:<p>{singleData?.startTime}</p><p>End Time:{singleData?.endTime}</p>
-                 <p>appointmentdaysInWeek:{singleData?.apointmentdaysInWeek}</p>
-                 <p>Categories:{singleData?.categoryIds?.map((c:any,i:any)=>(<div key={i}><p>{c?.name}</p></div>))}</p>
-                 <Rate allowHalf defaultValue={4.5} />
+                 <p>Title: {singleData?.title}</p>
+                <p>Price: {singleData?.price}</p>
+  
+                <p>Description: {singleData?.description}</p>
                 <Button onClick={()=>handlegivedonation(singleData?._id)} type="primary" danger>Donation: {singleData?.price}</Button>
                </Card>
 

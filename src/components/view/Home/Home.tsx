@@ -98,21 +98,16 @@ export const Homepage = ({posts}:{posts:any}) => {
           .map((categorydata:any, i:any) => (
             <Col xs={24} sm={24} md={12} lg={6} span={8} key={categorydata?.d} style={{ marginBottom: "20px" }}>
               <Card
-                title={''}
+                title={categorydata?.category}
                 hoverable
                 cover={<Image alt="example" src={categorydata?.image} width={420} height={300} />}
                 style={{ backgroundColor: colors[i] }} // Apply random background color
               >
-                <Meta title={categorydata?.name} />
-                <p>Name: {categorydata?.name}</p>
+                
+                <p>Title: {categorydata?.title.length > 20 ? categorydata.title.slice(0, 20) + '...' : categorydata.title}</p>
                 <p>Price: {categorydata?.price}</p>
-                <p>Location: {categorydata?.location}</p>
-                <p>Details: {categorydata?.details}</p>
-                <p>Start Time: {categorydata?.startTime}</p>
-                <p>End Time: {categorydata?.endTime}</p>
-                <p>Appointment days In Week: {categorydata?.apointmentdaysInWeek}</p>
-                <p>Categories: {categorydata?.categoryIds?.map((c:any, i:any) => (<div key={i}><p>{c?.name}</p></div>))}</p>
-                <Rate allowHalf defaultValue={4.5} />
+  
+                <p>Description: {categorydata?.description.length > 80 ? categorydata.description.slice(0, 185) + '...' : categorydata.description}</p>
                 <Link key={''} href={`/donationshome/${categorydata?._id}`}>
                   <Button type="primary" danger>viewDetails</Button>
                 </Link>

@@ -4,10 +4,9 @@ import { getServerSession } from "next-auth";
 
 const AdminHeader = async () => {
   const items = [
-    { key: "1", label: "Admins", href: "/admins" },
-    { key: "2", label: "My Profile", href: "/admins/my-profile" },
-    { key: "3", label: "Donationlist", href: "/admins/donationlist" },
-    { key: "4", label: "Statistic", href: "/admins/statistic" },
+    { key: "1", label: "Ceate Admins", href: "/admins" },
+    { key: "2", label: "Donationlist", href: "/admins/donationlist" },
+    { key: "3", label: "Statistic", href: "/admins/statistic" },
   ];
   const session : any = await getServerSession(authOptions);
   const sess=session.user.email

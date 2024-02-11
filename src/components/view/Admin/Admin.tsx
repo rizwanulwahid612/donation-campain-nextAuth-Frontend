@@ -27,14 +27,13 @@ console.log(userdata.map((usr:any)=>usr.email))
                  title={''}
                  hoverable
                  
-                 cover={<Image alt="example" src={categorydata?.profileImage} width={320} height={300} /> }
+                 cover={<Image alt="example" src={categorydata?.image} width={600} height={400} /> }
                >
                
                  <Meta title={categorydata?.name} />
-                 <p>Name:{categorydata?.name}</p><p>Price:{categorydata?.price}</p>Location:<p>{categorydata?.location}</p><p>Details:{categorydata?.details}</p>Start Time:<p>{categorydata?.startTime}</p><p>End Time:{categorydata?.endTime}</p>
-                 <p>appointmentdaysInWeek:{categorydata?.apointmentdaysInWeek}</p>
-                 <p>Categories:{categorydata?.categoryIds?.map((c:any,i:any)=>(<div key={i}><p>{c?.name}</p></div>))}</p>
-                 <Rate allowHalf defaultValue={4.5} />
+                 <p>Name:{categorydata?.name}</p>
+                 <p>Email:{categorydata?.email}</p>
+                 <p>Role:{categorydata?.role}</p>
                  
                </Card>
                {/* </Link> */}

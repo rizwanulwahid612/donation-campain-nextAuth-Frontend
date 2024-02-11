@@ -96,7 +96,7 @@ const Navbar = ({
                 router.push("/login");
               }}
             >
-              Sign In / register
+              LogIn
             </Button>
           )}
         </Menu>
@@ -116,6 +116,25 @@ const Navbar = ({
                 <Link href={item.href}>{item.label}</Link>
               </Menu.Item>
             ))}
+                 {session ? (
+            <Button
+              type="primary"
+              onClick={() => {
+                signOut();
+              }}
+            >
+              Sign Out
+            </Button>
+          ) : (
+            <Button
+              type="primary"
+              onClick={() => {
+                router.push("/login");
+              }}
+            >
+              LogIn
+            </Button>
+          )}
           </Menu>
         </Drawer>
       </Header>

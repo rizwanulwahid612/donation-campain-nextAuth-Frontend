@@ -18,7 +18,8 @@ const UserDashboardPage = ({ posts, session }: { posts: any, session: any }) => 
 
   return (
     <>
-      Total Donation Amount: {sum} Tk
+
+      <h2>Total Donation Amount: <span style={{color:"red"}}>{sum}</span>  Tk</h2>
       <div style={{ margin: "20px" }}>
         <Row gutter={6} style={{ margin: 0 }}>
           {catData
@@ -33,24 +34,17 @@ const UserDashboardPage = ({ posts, session }: { posts: any, session: any }) => 
             .map((categorydata: any, i: any) => (
               <Col xs={24} sm={24} md={12} lg={6} span={8} key={categorydata?._id} style={{ marginBottom: "20px" }}>
                 <Card
-                  title={''}
+                  title={categorydata?.category}
                   hoverable
                   cover={<Image alt="example" src={categorydata?.image} width={420} height={300} />}
                   style={{ backgroundColor: colors[i] }}
                 >
                   <Meta title={categorydata?.name} />
-                  <p>Name: {categorydata?.name}</p>
-                  <p>Price: {categorydata?.price}</p>
-                  <p>Location: {categorydata?.location}</p>
-                  <p>Details: {categorydata?.details}</p>
-                  <p>Start Time: {categorydata?.startTime}</p>
-                  <p>End Time: {categorydata?.endTime}</p>
-                  <p>Appointment days In Week: {categorydata?.apointmentdaysInWeek}</p>
-                  <p>Categories: {categorydata?.categoryIds?.map((c: any, i: any) => (<div key={i}><p>{c?.name}</p></div>))}</p>
-                  <Rate allowHalf defaultValue={4.5} />
-                  <Link href={`/donationshome/${categorydata?._id}`}>
-                    <Button type="primary" danger>viewDetails</Button>
-                  </Link>
+                    <p>Title: {categorydata?.title.length > 20 ? categorydata.title.slice(0, 20) + '...' : categorydata.title}</p>
+                <p>Price: {categorydata?.price}</p>
+  
+                <p>Description: {categorydata?.description.length > 80 ? categorydata.description.slice(0, 185) + '...' : categorydata.description}</p>
+                 <p>Donation Time:{categorydata?.createdAt}</p>
                 </Card>
               </Col>
             ))}
