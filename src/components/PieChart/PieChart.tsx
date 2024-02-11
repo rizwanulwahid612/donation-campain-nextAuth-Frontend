@@ -68,6 +68,8 @@ console.log('Data:', dataofStatistic);
 
   return (
     <>
+          <h1 style={{display:"flex",justifyContent:"center",margin:"50px"}}>Donor Email and Total Donation amount</h1>
+
     <div style={{display:"flex",justifyContent:"center"}}>
     <BarChart
       width={1200}
