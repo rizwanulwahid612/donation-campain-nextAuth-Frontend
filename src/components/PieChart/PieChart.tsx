@@ -7,50 +7,7 @@ import { schemeCategory10 } from "d3-scale-chromatic";
 
 const colors = scaleOrdinal(schemeCategory10).range();
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
-  }
-];
+
 
 const getPath = (x: number, y: number, width: number, height: number) => {
   return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2},${
@@ -69,11 +26,52 @@ const TriangleBar: FunctionComponent<any> = (props: any) => {
   return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
 };
 
-export default function App() {
+export default function PieChartsPage({session,posts}:{session:any,posts:any}) {
+  console.log(posts)
+  const datas = posts?.data?.map((p:any) => p?.price || 0);
+const sum = datas?.reduce((accumulator:any, currentValue:any) => accumulator + parseFloat(currentValue), 0);
+  console.log(sum)
+ 
+
+const emailPriceMap = new Map();
+
+// Iterate over each post
+const userPost= posts?.data?.forEach((post:any) => {
+  const email = post?.userInfo?.userEmail;
+  const price = parseFloat(post?.price) || 0; // Assuming price is a string representing a number
+  
+  // Update sum for the email
+  if (email) {
+    if (emailPriceMap.has(email)) {
+      // If email exists in map, add price to existing sum
+      emailPriceMap.set(email, emailPriceMap.get(email) + price);
+    } else {
+      // If email doesn't exist in map, initialize sum with price
+      emailPriceMap.set(email, price);
+    }
+  }
+});
+console.log(userPost)
+const dataofStatistic: {
+  name: any;
+  uv: any;
+  pv: 2400;
+  amt: 2400;
+}[] = [];
+emailPriceMap.forEach((sum, email) => {
+  dataofStatistic.push({ name:email, uv: sum,pv:2400,amt:2400 });
+});
+
+console.log('Data:', dataofStatistic);
+
+ const data= dataofStatistic;
+
   return (
+    <>
+    <div style={{display:"flex",justifyContent:"center"}}>
     <BarChart
       width={1200}
-      height={500}
+      height={600}
       data={data}
       margin={{
         top: 20,
@@ -91,10 +89,28 @@ export default function App() {
         shape={<TriangleBar />}
         label={{ position: "top" }}
       >
-        {data.map((entry, index) => (
+        {data?.map((entry:any, index:any) => (
+          <>
           <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+           
+           </>
         ))}
       </Bar>
     </BarChart>
+    </div>
+    <div>
+      {data.map((v:any,i:any)=>(
+        <div key={i}>
+          <div style={{display:"flex",gap:"45px",marginBottom:"8px",justifyContent:"center"}}>
+          <h4 style={{color:"navy"}}>User:{` `}{v.name}</h4>
+          <h4 style={{color:"yellowgreen"}}>Total Donation:{` `}{v.uv}</h4>
+          </div>
+          
+        </div>
+      ))}
+    </div>
+   {/* <div style={{color:"black"}}>User Email:{data.map((d:any)=>d.name )}</div>
+   <div style={{color:"black"}}>User Total donation amount:{data.map((p:any)=>p.uv )}</div> */}
+    </>
   );
 }

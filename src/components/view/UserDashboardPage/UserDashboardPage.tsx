@@ -20,8 +20,15 @@ console.log(posts)
         return p
     }
  }).filter(Boolean);
- console.log(post2.map((p:any)=>p))
+ console.log("post:",post2)
+//  console.log(post2.map((p:any)=>p?.price))
+//  const sum = post2.reduce((accumulator: number, currentValue: string) => accumulator + parseFloat(currentValue), 0);
+ const data = post2.map((p:any) => p?.price || 0); // Extract prices and handle potential null or undefined values
+const sum = data.reduce((accumulator:any, currentValue:any) => accumulator + parseFloat(currentValue), 0); // Calculate sum
+ console.log("sum:",sum)
   return (
+    <>
+    Total Donation Amount : {sum} Tk
         <div style={{margin:"20px"}}>
        <Row gutter={6} style={{ margin: 0 }}>
 
@@ -50,6 +57,8 @@ console.log(posts)
            ))}
         </Row>
         </div>
+        
+        </>
   )
 }
 
