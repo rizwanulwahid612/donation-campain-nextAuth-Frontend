@@ -35,7 +35,7 @@ export const Homepage = ({posts}:{posts:any}) => {
      }
   
    const catData = posts
-   const colors = getRandomLightColors(catData.data.length);
+   const colors = getRandomLightColors(catData?.data?.length);
   return (
     
 
@@ -115,7 +115,7 @@ export const Homepage = ({posts}:{posts:any}) => {
             </Col>
           ))}
       </Row>
-      {catData.data.length > 4 && !showAll && (
+      {catData?.data?.length > 4 && !showAll && (
         <div style={{display:"flex",justifyContent:"center"}}>
          <Button type="primary" onClick={() => setShowAll(true)}>See All</Button>
         </div>

@@ -115,7 +115,7 @@ export const PublicHomepage = ({session}:{session:any}) => {
             </Col>
           ))}
       </Row>
-      {catData.data.length > 4 && !showAll && (
+      {catData?.data?.length > 4 && !showAll && (
         <div style={{display:"flex",justifyContent:"center"}}>
          <Button type="primary" onClick={() => setShowAll(true)}>See All</Button>
         </div>
