@@ -1,36 +1,49 @@
 "use client"
 import { Button, Form, Input, message } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React from 'react'
+
+
+ 
 type FieldType = {
-  title: string;
-  category: string;
-  image: string;
-  price?: string;
-  description: string;
+    title?: string;
+    category?: string;
+    image?: string;
+    price?: string | undefined;
+    description?: string;
 };
-const DonationCreate = () => {
- const router = useRouter();
-  const onFinish = async (values: FormData) => {
+
+
+const UpdatePostForm = ({ id,singleData }:{id:any,singleData:any}) => {
+  const initialValues = {
+    title: singleData?.title,
+    image: singleData?.image,
+    price: singleData?.price,
+    category: singleData?.category,
+    description: singleData?.description,
+  };
+  const router = useRouter();
+ 
+console.log(singleData)
+  
+   const onFinish = async (values: FormData) => {
     console.log(values)
-    try {
-      const response = await fetch('http://localhost:5000/api/v1/donations/create-donate', {
-        method: 'POST',
+    try{
+      const response = await fetch(`http://localhost:5000/api/v1/donations/${id}`, {
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(values),
       });
 
-      if (!response.ok) {
-        message.error("Donation was not created")
+     if (!response.ok) {
+        message.error("Donation was not Update")
       }else{
         router.refresh();
         router.push("/admins/donationlist");
       
-      message.success("Donation created SuccessFully")
+      message.success("Donation updated SuccessFully")
       }
 
       const responseData = await response.json();
@@ -38,15 +51,14 @@ const DonationCreate = () => {
     } catch (error) {
       console.error(error);
     }
- 
+   
   };
-
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
-  };
+//  const onFinishFailed = (errorInfo: any) => {
+//     console.log("Failed:", errorInfo);
+//   };
   return (
-    <div>
-      <h1 style={{marginBottom:"30px"}}>Create Donation Form</h1>
+  <div>
+      <h1 style={{marginBottom:"30px"}}>UPdate Donation Form</h1>
     <Form
       name="basic"
       labelCol={{ span: 8 }}
@@ -54,27 +66,30 @@ const DonationCreate = () => {
       style={{ maxWidth: 600 }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
+      //onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
       <Form.Item<FieldType>
         label="Title"
         name="title"
-        rules={[{ required: true, message: "Please input Title!" }]}
+        initialValue={initialValues?.title}
+        rules={[{ message: "Please input Title!" }]}
       >
         <Input type="text" />
       </Form.Item>
       <Form.Item<FieldType>
         label="Image"
         name="image"
-        rules={[{ required: true, message: "Please input Image url!" }]}
+         initialValue={initialValues?.image}
+        rules={[{ message: "Please input Image url!" }]}
       >
         <Input type="text" />
       </Form.Item>
       <Form.Item<FieldType>
         label="Price"
         name="price"
-        rules={[{ required: true, message: "Please input Price!" }]}
+         initialValue={initialValues?.price}
+        rules={[{ message: "Please input Price!" }]}
       >
         <Input type="text" />
       </Form.Item>
@@ -82,14 +97,18 @@ const DonationCreate = () => {
       <Form.Item<FieldType>
         label="Category"
         name="category"
-        rules={[{ required: true, message: "Please input Category!" }]}
+         initialValue={initialValues?.category}
+        rules={[{ message: "Please input Category!" }]}
       >
         <Input type="text" />
       </Form.Item>
 
+      
+
       <Form.Item<FieldType>
        
         label="Description"
+         initialValue={initialValues?.description}
         name="description"
         rules={[{  message: "Please input Description!" }]}
       >
@@ -104,7 +123,7 @@ const DonationCreate = () => {
     </Form>
     
     </div>
-  )
-}
+  );
+};
 
-export default DonationCreate
+export default UpdatePostForm;
