@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useDebounced } from "../Debounced/Debounced";
 import { ReloadOutlined } from "@ant-design/icons";
 import { useDonationsQuery } from "@/redux/api/donationApi";
-
+import donationImage from "../../../assets/78862325-group-of-volunteer-people-donate-stuff-for-charity.jpg"
 export const PublicHomepage = ({session}:{session:any}) => {
      const query: Record<string, any> = {};
      const {data,isLoading}= useDonationsQuery({query})
@@ -46,19 +46,32 @@ export const PublicHomepage = ({session}:{session:any}) => {
     
 
     <div>
-  <ActionBar title="Donation List">
-     
-         <Input
-          id="searchInput"
-          type="text"
-           size="large"
-           placeholder="Search"
-           onChange={(e) => setSearchTerm(e.target.value)}
-           style={{
-             width: '20%',
-           }}
-         />
-        
+  <ActionBar>
+  <div style={{ position: "relative", width: '100%', height: 400 }}>
+      <Image src={donationImage} alt="" width={600} height={600} style={{ opacity: 0.2, width: '100%' }} />
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', color: 'black', fontSize: '24px' }}>
+        <h2>I Grow By Helping People In Need</h2> 
+      </div>
+      <Input
+        id="searchInput"
+        type="text"
+        size="large"
+        placeholder="Search"
+        onChange={(e) => setSearchTerm(e.target.value)}
+        style={{
+          position: 'absolute',
+          top: '90%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '70%',
+          zIndex: 1, // Ensure search input appears above the text
+          backgroundColor: 'lighyellow', // Background color with opacity
+          padding: '20px 25px', // Padding for better appearance
+          borderRadius: '15px', // Rounded corners for better appearance
+        }}
+      />
+    </div> 
+       
          <div>
            {( !!searchTerm) && (
              <Button
@@ -72,7 +85,7 @@ export const PublicHomepage = ({session}:{session:any}) => {
          </div>
       </ActionBar>   
       
-          <div style={{ margin: "20px" }}>
+          <div style={{ marginTop: "290px",marginBottom:"50px" }}>
       <Row gutter={6} style={{ margin: 0 }}>
         {catData?.data
           ?.filter((categorydata:any) => {

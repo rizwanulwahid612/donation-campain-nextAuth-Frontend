@@ -7,7 +7,8 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
+import donatelogo from "../../../assets/kisspng-money-makes-the-world-go-round-donation-twitch-donate-5ac6ecd5b41027.9283162515229861977376.jpg"
+import Image from "next/image";
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
@@ -54,12 +55,16 @@ const Navbar = ({
         <Content>
           <Link href="/">
             <Title
-              className={`m-0 text-white ${
-                hasSider && "text-center lg:text-left"
-              }`}
-            >
-              Donation Campain
-            </Title>
+      className={`m-0 text-white ${
+        hasSider && "text-center lg:text-left"
+      }`}
+      style={{ fontSize: '16px' }} // Adjust the font size as needed
+    >
+      <div style={{display:"flex",alignItems:"center"}}>
+      <Image src={donatelogo} alt="" width={160} height={60} />
+       <h4 style={{color:"white"}}>Campain</h4>
+       </div>
+    </Title>
           </Link>
         </Content>
         <Menu
