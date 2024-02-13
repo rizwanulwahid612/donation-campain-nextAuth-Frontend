@@ -10,7 +10,7 @@ import { getServerSession } from "next-auth";
 const StatisticPage = async() => {
   const session = await getServerSession(authOptions);
     console.log( "session:",session);
-  const res = await fetch(`http://localhost:5000/api/v1/postdonations`, {
+  const res = await fetch(`${process.env.BACKEND_URL}/postdonations`, {
         next: {
             revalidate: 2,
         }
@@ -18,7 +18,7 @@ const StatisticPage = async() => {
     const posts = await res.json();
 
 
-    const result = await fetch("http://localhost:5000/api/v1/donations", {
+    const result = await fetch(`${process.env.BACKEND_URL}/donations`, {
         
         next: {
             revalidate: 2,

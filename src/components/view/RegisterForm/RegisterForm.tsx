@@ -16,7 +16,7 @@ const RegisterForm = () => {
   const onFinish = async (values: FormData) => {
     console.log(values)
     try {
-      const response = await fetch('http://localhost:5000/api/v1/users/create-user', {
+      const response = await fetch(`${process.env.BACKEND_URL}/users/create-user`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

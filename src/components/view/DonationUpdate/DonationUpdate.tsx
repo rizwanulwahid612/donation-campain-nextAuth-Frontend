@@ -29,7 +29,7 @@ console.log(singleData)
    const onFinish = async (values: FormData) => {
     console.log(values)
     try{
-      const response = await fetch(`http://localhost:5000/api/v1/donations/${id}`, {
+      const response = await fetch(`${process.env.BACKEND_URL}/donations/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

@@ -10,7 +10,7 @@ import { useDebounced } from "../Debounced/Debounced";
 import { ReloadOutlined } from "@ant-design/icons";
 import { useDonationsQuery } from "@/redux/api/donationApi";
 import donationImage from "../../../assets/78862325-group-of-volunteer-people-donate-stuff-for-charity.jpg"
-export const PublicHomepage = ({session}:{session:any}) => {
+export const PublicHomepage = ({posts}:{posts:any}) => {
      const query: Record<string, any> = {};
      const {data,isLoading}= useDonationsQuery({query})
     const [showAll, setShowAll] = useState(false);
@@ -18,7 +18,7 @@ export const PublicHomepage = ({session}:{session:any}) => {
     const [searchTerm, setSearchTerm] = useState<string>('');
     //const session = await getServerSession(authOptions);
   //console.log( "session:",session);
-  const catData = data
+  const catData = posts
    const colors = getRandomLightColors(catData?.data?.length);
    const debouncedSearchTerm = useDebounced({
     searchQuery: searchTerm,
@@ -34,14 +34,7 @@ export const PublicHomepage = ({session}:{session:any}) => {
     if(isLoading){
       return <div>Loading...</div>
      }
-   // console.log(posts?.data)
-  // const catData = posts
-//   console.log("gfsghfppppp",catData)
-//    console.log("meta:",catData)
-
-//  // const name=searchParams['name'] ?? ''
-
-   //const entries= data?.data
+ 
   return (
     
 

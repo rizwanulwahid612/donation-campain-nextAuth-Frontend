@@ -16,7 +16,7 @@ const DonationCreate = () => {
   const onFinish = async (values: FormData) => {
     console.log(values)
     try {
-      const response = await fetch('http://localhost:5000/api/v1/donations/create-donate', {
+      const response = await fetch(`${process.env.BACKEND_URL}/donations/create-donate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -7,8 +7,8 @@ const hybridRoutes = ["/", "/login", "/register"];
 const userAccesibleRoutes = ["/donationshome", "/userdashboard", "/my-profile"];
 const rolesRedirect: Record<string, unknown> = {
   // doctor: `http://localhost:3000/doctor/dashboard`,
-  user: `http://localhost:3000/my-profile`,
-  admin: `http://localhost:3000/admins/my-profile`,
+  user: `https://donation-frontend-alpha.vercel.app/my-profile`,
+  admin: `https://donation-frontend-alpha.vercel.app/admins/my-profile`,
 };
 export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
@@ -18,7 +18,9 @@ export async function middleware(request: NextRequest) {
     if (hybridRoutes.includes(pathname)) {
       return NextResponse.next();
     }
-    return NextResponse.redirect(`http://localhost:3000/login`);
+    return NextResponse.redirect(
+      `https://donation-frontend-alpha.vercel.app/login`
+    );
   }
 
   const role = token?.role as string;
@@ -37,9 +39,9 @@ export async function middleware(request: NextRequest) {
   }
 
   // NextResponse.rewrite(request.
-  NextResponse.rewrite("http://localhost:3000/login");
+  NextResponse.rewrite(`https://donation-frontend-alpha.vercel.app/login`);
   //so d
-  return NextResponse.redirect(`http://localhost:3000`);
+  return NextResponse.redirect(`https://donation-frontend-alpha.vercel.app`);
 }
 
 // See "Matching Paths" below to learn more

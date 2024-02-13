@@ -2,7 +2,7 @@ import UpdatePostForm from "@/components/view/DonationUpdate/DonationUpdate"
 
 const EditDonationPage = async ({ params }:{params:any}) => {
     console.log("params:",params.id)
-    const res = await fetch(`http://localhost:5000/api/v1/donations/${params.id}`,{
+    const res = await fetch(`${process.env.BACKEND_URL}/donations/${params.id}`,{
       cache:"no-store"
     })
     const postby = await res.json()

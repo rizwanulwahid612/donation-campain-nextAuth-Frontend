@@ -1,7 +1,7 @@
 "use server";
 export const getNewAccessToken = async (token: string) => {
   try {
-    const res = await fetch(`http://localhost:5000/api/v1/auth/refresh-token`, {
+    const res = await fetch(`${process.env.BACKEND_URL}/auth/refresh-token`, {
       method: "POST",
       body: JSON.stringify({ refreshToken: token }),
       headers: {

@@ -7,7 +7,7 @@ import { tagTypesList } from "../tag-types";
 export const baseApi = createApi({
   reducerPath: "api",
   //baseQuery: axiosBaseQuery({ baseUrl: getBaseUrl() }),
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/v1" }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${process.env.BACKEND_URL}` }),
   endpoints: () => ({}),
   // tagTypes: ["user"], //here we cash/store data  which was fetched
   tagTypes: tagTypesList,

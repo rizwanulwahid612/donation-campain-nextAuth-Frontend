@@ -5,6 +5,13 @@ import { authOptions } from "./lib/AuthOptions";
 import { PublicHomepage } from "@/components/view/Public/PublicHomePage";
 
 export default async function Home() {
+  const res = await fetch(`${process.env.BACKEND_URL}/donations`, {
+        
+        next: {
+            revalidate: 2,
+        }
+    });
+    const posts = await res.json();
   const session = await getServerSession(authOptions);
   console.log( "session:",session);
 
@@ -12,7 +19,7 @@ export default async function Home() {
     <div>
       <PublicHeader />
       <div className="min-h-[calc(100vh-64px)]">
-        <PublicHomepage session={session}/>
+        <PublicHomepage  posts={posts}/>
          </div>
       
     </div>
