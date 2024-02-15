@@ -1,6 +1,8 @@
+admin email: admin2@gmail.com
+adminPass: 123456
 project videolink: https://screenrec.com/share/4bCHedyBXn
-project backend link: https://donation-server-ptpf2ry8r-rizwanulwahid612-gmailcom.vercel.app/api/v1/users
-project frontendlink: https://donation-frontend-8vpsip0qj-rizwanulwahid612-gmailcom.vercel.app
+project backend link: https://donation-server-opal.vercel.app/api/v1/users
+project frontendlink: https://donation-frontend-alpha.vercel.app/login
 githubServerlink:https://github.com/rizwanulwahid612/donation-server-side
 githubFrontendLink:https://github.com/rizwanulwahid612/donation-campain-nextAuth-Frontend
 I was build and developing Donation campain webside.using Next js,next_auth,redux,Typescript,user Authentication and authorization, for backend i was used mongoDB,node,express,mongoose,typescript,custom authentication,jwt.Responsive design for Mobile
