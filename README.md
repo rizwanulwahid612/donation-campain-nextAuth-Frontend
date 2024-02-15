@@ -28,7 +28,15 @@ admin
 Create/Update/Delete a donation post.
 
 Can see the donation statistics of a donation post.
-
 Create other admins.
 Register & Login page
 Consider implementing server-side rendering (SSR) or static site generation (SSG) where possible for better SEO and performance.
+
+###env.local : BACKEND_URL=https://donation-server-opal.vercel.app/api/v1
+NEXT_PUBLIC_API=https://donation-frontend-alpha.vercel.app
+JWT_SECRET=hfhkjhggughhiuui
+NEXTAUTH_SECRET=secret
+###.env : NEXTAUTH_SECRET=secret
+JWT_SECRET=hfhkjhggughhiuui
+BACKEND_URL=http://localhost:5000/api/v1
+FRONTEND_URL=http://localhost:3000
