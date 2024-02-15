@@ -9,12 +9,7 @@ import { getServerSession } from "next-auth";
 const UserDashboard = async() => {
    const session = await getServerSession(authOptions);
     console.log( "session:",session);
-  const res = await fetch(`${process.env.BACKEND_URL}/postdonations`, {
-        //cache:"no-store"
-        next: {
-            revalidate: 2,
-        }
-    });
+  const res = await fetch(`https://donation-server-opal.vercel.app/api/v1/postdonations`);
     const posts = await res.json();
   return (
     <div>

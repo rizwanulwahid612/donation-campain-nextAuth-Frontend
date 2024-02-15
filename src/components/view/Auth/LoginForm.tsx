@@ -41,18 +41,20 @@ const LoginForm: React.FC = () => {
         minHeight: "10vh",
       }}
     >
-      <Col sm={12} md={16} lg={10}>
-         <Image src={logImage} alt="" width={400} height={300}/>
-      </Col>
+      {/* <Col sm={12} md={16} lg={10}>
+         <Image src={logImage} alt="" width={200} height={150}/>
+      </Col> */}
       <Col>
         <h1
           style={{
             margin: "0px 0px",
+            display:"flex",
+            textAlign:"center",
           }}
         >
           Login
         </h1>
-     <div style={{display:"block"}}>
+     <div style={{display:"block",alignItems:"center",textAlign:"center"}}>
      
     <Form
     

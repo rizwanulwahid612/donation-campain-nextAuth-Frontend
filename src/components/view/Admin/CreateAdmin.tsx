@@ -14,7 +14,7 @@ const CreateAdmin = () => {
   const onFinish = async (values: FormData) => {
     console.log(values)
     try {
-      const response = await fetch(`${process.env.BACKEND_URL}/users/create-admin`, {
+      const response = await fetch(`https://donation-server-opal.vercel.app/api/v1/users/create-admin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

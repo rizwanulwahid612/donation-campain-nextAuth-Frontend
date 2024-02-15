@@ -6,12 +6,7 @@ import { getServerSession } from "next-auth";
 const MyProfilepage = async() => {
   const session = await getServerSession(authOptions);
   //console.log( "session:",session?.user?.email);
-  const res = await fetch(`${process.env.BACKEND_URL}/users`, {
-        
-        next: {
-            revalidate: 2,
-        }
-    });
+  const res = await fetch(`https://donation-server-opal.vercel.app/api/v1/users`);
     const posts = await res.json();
   return (
     <div>

@@ -16,7 +16,7 @@ const DonationCreate = () => {
   const onFinish = async (values: FormData) => {
     console.log(values)
     try {
-      const response = await fetch(`${process.env.BACKEND_URL}/donations/create-donate`, {
+      const response = await fetch(`https://donation-server-opal.vercel.app/api/v1/donations/create-donate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -53,7 +53,7 @@ const DonationPage = () => {
   if (!!debouncedSearchTerm) {
     query["searchTerm"] = debouncedSearchTerm;
   }
-  const { data, isLoading } = useDonationsQuery({ ...query });
+  const { data, isLoading } = useDonationsQuery({ ...query },{refetchOnMountOrArgChange:true,pollingInterval:1000});
  console.log(data)
 
   const donations:IDonation[] | undefined = data?.data;

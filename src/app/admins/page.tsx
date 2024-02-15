@@ -57,7 +57,7 @@ const AdminsPage = () => {
   if (!!debouncedSearchTerm) {
     query["searchTerm"] = debouncedSearchTerm;
   }
-  const { data, isLoading } = useUsersQuery({ ...query });
+  const { data, isLoading } = useUsersQuery({ ...query },{refetchOnMountOrArgChange:true,pollingInterval:1000});
  
 //  const session:any=getSession()
 //  console.log(session?.accessToken)

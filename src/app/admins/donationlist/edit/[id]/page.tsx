@@ -2,7 +2,7 @@ import UpdatePostForm from "@/components/view/DonationUpdate/DonationUpdate"
 
 const EditDonationPage = async ({ params }:{params:any}) => {
     console.log("params:",params.id)
-    const res = await fetch(`${process.env.BACKEND_URL}/donations/${params.id}`,{
+    const res = await fetch(`https://donation-server-opal.vercel.app/api/v1/donations/${params.id}`,{
       cache:"no-store"
     })
     const postby = await res.json()

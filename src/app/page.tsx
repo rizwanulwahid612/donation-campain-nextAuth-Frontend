@@ -5,12 +5,7 @@ import { authOptions } from "./lib/AuthOptions";
 import { PublicHomepage } from "@/components/view/Public/PublicHomePage";
 
 export default async function Home() {
-  const res = await fetch(`${process.env.BACKEND_URL}/donations`, {
-        
-        next: {
-            revalidate: 2,
-        }
-    });
+  const res = await fetch(`https://donation-server-opal.vercel.app/api/v1/donations`);
     const posts = await res.json();
   const session = await getServerSession(authOptions);
   console.log( "session:",session);

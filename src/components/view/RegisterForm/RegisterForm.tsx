@@ -1,3 +1,4 @@
+
 "use client"
 import { Button, Col, Form, Input, Row, message } from 'antd';
 import Image from 'next/image';
@@ -16,7 +17,7 @@ const RegisterForm = () => {
   const onFinish = async (values: FormData) => {
     console.log(values)
     try {
-      const response = await fetch(`${process.env.BACKEND_URL}/users/create-user`, {
+      const response = await fetch(`https://donation-server-opal.vercel.app/api/v1/users/create-user`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,16 +50,17 @@ const RegisterForm = () => {
       justify="space-between"
       align="middle"
       style={{
+        marginTop:"70px",
         minHeight: "0vh",
       }}
     >
       
-      <Col sm={12} md={16} lg={10} style={{marginTop:"180px"}}>
-         <Image src={signinimg} alt="" width={400} height={300}/>
-      </Col>
+      {/* <Col sm={12} md={16} lg={10} style={{marginTop:"180px"}}>
+         <Image src={signinimg} alt="" width={200} height={150}/>
+      </Col> */}
       <Col>
       
-    <div style={{display:"block"}}>
+    <div style={{display:"block",justifyContent:"center",alignItems:"center",textAlign:"center"}}>
       <h1>Register</h1>
     <Form
       name="basic"
@@ -106,7 +108,7 @@ const RegisterForm = () => {
         </Button>
       </Form.Item>
     </Form>
-    <div style={{display:"flex"}}>
+    <div style={{display:"flex",marginBottom:"40px"}}>
     <p>If you are already Registered!,Please...</p><Link href="/login">Login </Link>
     </div>
     </div>

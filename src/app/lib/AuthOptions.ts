@@ -20,11 +20,14 @@ export const authOptions: AuthOptions = {
       },
       async authorize(credentials, req) {
         try {
-          const res = await fetch(`${process.env.BACKEND_URL}/auth/login`, {
-            method: "POST",
-            body: JSON.stringify(credentials),
-            headers: { "Content-Type": "application/json" },
-          });
+          const res = await fetch(
+            `https://donation-server-opal.vercel.app/api/v1/auth/login`,
+            {
+              method: "POST",
+              body: JSON.stringify(credentials),
+              headers: { "Content-Type": "application/json" },
+            }
+          );
           const { data } = await res.json();
           console.log("hfghdhgdg", data);
           const verifiedToken: any = jwtHelpers.verifyToken(

@@ -24,16 +24,19 @@ export const getAllDoctors = async (
       return acc;
     }, [] as string[])
     .join("&");
-  const res = await fetch(`${process.env.BACKEND_URL}/doctors?${queryString}`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    // cache: "no-cache"
-    next: {
-      revalidate: 24 * 60 * 60,
-      tags: ["all-doctors"],
-    },
-  });
+  const res = await fetch(
+    `https://donation-server-opal.vercel.app/api/v1/doctors?${queryString}`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // cache: "no-cache"
+      next: {
+        revalidate: 24 * 60 * 60,
+        tags: ["all-doctors"],
+      },
+    }
+  );
   const { data } = await res.json();
   if (res.ok && data) {
     return data;

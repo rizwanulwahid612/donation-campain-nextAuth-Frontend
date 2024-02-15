@@ -7,8 +7,8 @@ const hybridRoutes = ["/", "/login", "/register"];
 const userAccesibleRoutes = ["/donationshome", "/userdashboard", "/my-profile"];
 const rolesRedirect: Record<string, unknown> = {
   // doctor: `http://localhost:3000/doctor/dashboard`,
-  user: `https://donation-frontend-alpha.vercel.app/my-profile`,
-  admin: `https://donation-frontend-alpha.vercel.app/admins/my-profile`,
+  user: `${process.env.NEXT_PUBLIC_API}/my-profile`,
+  admin: `${process.env.NEXT_PUBLIC_API}/admins/my-profile`,
 };
 export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
@@ -18,9 +18,7 @@ export async function middleware(request: NextRequest) {
     if (hybridRoutes.includes(pathname)) {
       return NextResponse.next();
     }
-    return NextResponse.redirect(
-      `https://donation-frontend-alpha.vercel.app/login`
-    );
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_API}/login`);
   }
 
   const role = token?.role as string;
@@ -39,9 +37,9 @@ export async function middleware(request: NextRequest) {
   }
 
   // NextResponse.rewrite(request.
-  NextResponse.rewrite(`https://donation-frontend-alpha.vercel.app/login`);
+  NextResponse.rewrite(`${process.env.NEXT_PUBLIC_API}/login`);
   //so d
-  return NextResponse.redirect(`https://donation-frontend-alpha.vercel.app`);
+  return NextResponse.redirect(`${process.env.NEXT_PUBLIC_API}`);
 }
 
 // See "Matching Paths" below to learn more

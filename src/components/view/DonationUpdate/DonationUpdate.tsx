@@ -29,7 +29,7 @@ console.log(singleData)
    const onFinish = async (values: FormData) => {
     console.log(values)
     try{
-      const response = await fetch(`${process.env.BACKEND_URL}/donations/${id}`, {
+      const response = await fetch(`https://donation-server-opal.vercel.app/api/v1/donations/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
