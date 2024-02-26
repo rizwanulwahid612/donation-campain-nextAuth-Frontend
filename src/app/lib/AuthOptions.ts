@@ -21,6 +21,8 @@ export const authOptions: AuthOptions = {
       async authorize(credentials, req) {
         try {
           const res = await fetch(
+            //http://localhost:5000/api/v1
+            //`http://localhost:5000/api/v1/auth/login`,
             `https://donation-server-opal.vercel.app/api/v1/auth/login`,
             {
               method: "POST",

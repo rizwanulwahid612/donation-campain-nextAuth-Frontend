@@ -11,18 +11,14 @@ import {
   EyeOutlined,
 } from "@ant-design/icons";
 import { useEffect, useReducer, useState } from "react";
-//import { useDebounced } from "@/redux/hooks";
-//import UMTable from "@/components/ui/UMTable";
-//import { useAdminsQuery, useDeleteAdminMutation} from "@/redux/api/adminApi";
-//import { IAdmin, IDepartment, IUser } from "@/types";
+
 import dayjs from "dayjs";
-//import UMModal from "@/components/ui/UMModal";
+
 import ActionBar from "@/components/ui/ActionBar/ActionBar";
 import EMTable from "@/components/ui/EMTable/EMTable";
 import EMBreadCrumb from "@/components/ui/EMBreadCrumb/EMBreadCumb";
 import EMModal from "@/components/ui/EMModel/EMModel";
-//import { getUserInfo, isLoggedIn } from "@/services/auth.service";
-//import { USER_ROLE } from "@/constants/role";
+
 import { redirect, useRouter } from "next/navigation";
 import { useDebounced } from "@/components/view/Debounced/Debounced";
 import { useUsersQuery } from "@/redux/api/usersApi";
@@ -59,8 +55,7 @@ const AdminsPage = () => {
   }
   const { data, isLoading } = useUsersQuery({ ...query },{refetchOnMountOrArgChange:true,pollingInterval:1000});
  
-//  const session:any=getSession()
-//  console.log(session?.accessToken)
+
   const users:IUser[] | undefined = data?.data;
   const user=users?.map((user:any)=>user._id)
   const meta = data?.meta;
@@ -151,19 +146,7 @@ const AdminsPage = () => {
     setSearchTerm("");
   };
 
-  // const deleteAdminHandler = async (id: string) => {
-  //   // console.log(id);
-  //   try {
-  //     const res = await deleteAdmin(id);
-  //     if (res) {
-  //       message.success("Admin Successfully Deleted!");
 
-  //       setOpen(false);
-  //     }
-  //   } catch (error: any) {
-  //     message.error(error.message);
-  //   }
-  // };
 
   return (
     <div>
@@ -212,14 +195,7 @@ const AdminsPage = () => {
         showPagination={true}
       />
 
-      {/* <EMModal
-        title="Remove admin"
-        isOpen={open}
-        closeModal={() => setOpen(false)}
-        handleOk={() => deleteAdminHandler(adminId)}
-      >
-        <p className="my-5">Do you want to remove this admin?</p>
-      </EMModal> */}
+     
     </div>
   );
 };

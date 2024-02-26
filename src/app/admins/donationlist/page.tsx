@@ -11,10 +11,7 @@ import {
   EyeOutlined,
 } from "@ant-design/icons";
 import { useEffect, useReducer, useState } from "react";
-//import { useDebounced } from "@/redux/hooks";
-//import UMTable from "@/components/ui/UMTable";
-//import { useAdminsQuery, useDeleteAdminMutation} from "@/redux/api/adminApi";
-//import { IAdmin, IDepartment } from "@/types";
+;
 import dayjs from "dayjs";
 //import UMModal from "@/components/ui/UMModal";
 import ActionBar from "@/components/ui/ActionBar/ActionBar";
@@ -69,10 +66,7 @@ const DonationPage = () => {
     {
       title: "Title",
       dataIndex: "title",
-      // render: function (data: Record<string, string>) {
-      //   const fullName = `${data?.title}`;
-      //   return <>{fullName}</>;
-      // },
+    
     },
     {
       title: "Category",
@@ -87,18 +81,7 @@ const DonationPage = () => {
       title: "Description",
       dataIndex: "description",
     },
-    //  {
-    //   title: "Updated At",
-    //   dataIndex: "updatedAt",
-    // },
-    // {
-    //   title: "Created at",
-    //   dataIndex: "createdAt",
-    //   render: function (data: any) {
-    //     return data && dayjs(data).format("MMM D, YYYY hh:mm A");
-    //   },
-    //   sorter: true,
-    // },
+  
     {
       title: "UpdatedAt",
       dataIndex: "updatedAt",
@@ -184,14 +167,7 @@ const DonationPage = () => {
 
   return (
     <div>
-      {/* <EMBreadCrumb
-        items={[
-          {
-            label: "admin",
-            link: "/admin",
-          },
-        ]}
-      /> */}
+    
       <ActionBar title="Donation List">
         <Input
           size="large"

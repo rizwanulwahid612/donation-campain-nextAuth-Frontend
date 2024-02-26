@@ -23,15 +23,7 @@ export const donationApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.donations],
     }),
-    // transformResponse: (response: IDonation[], meta: IMeta) => {
-    //   return {
-    //     donations: response,
-    //     meta,
-    //   };
-    // },
-    //   providesTags: [tagTypes.donations],
-    // }),
-    // // get single academic department
+
     donation: build.query({
       query: (id: string | string[] | undefined) => ({
         url: `${DONATION_URL}/${id}`,
@@ -68,8 +60,4 @@ export const {
   useDonationQuery,
   useUpdateDonationMutation,
   useDeleteDonationMutation,
-  //useDeleteDonatMutation,
-  //useCategoryQuery,
-  //useDeleteCategoryMutation,
-  //useUpdateCategoryMutation,
 } = donationApi;

@@ -6,7 +6,9 @@ import { revalidateTag } from "next/cache";
 export const deleteDoctor = async (id: string) => {
   console.log(id);
   const res = await fetch(
+    //http://localhost:5000/api/v1
     `https://donation-server-opal.vercel.app/api/v1/doctors/${id}`,
+    //`http://localhost:5000/api/v1/doctors/${id}`,
     {
       method: "DELETE",
     }

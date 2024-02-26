@@ -4,7 +4,12 @@ import type { NextRequest } from "next/server";
 
 // This function can be marked `async` if using `await` inside
 const hybridRoutes = ["/", "/login", "/register"];
-const userAccesibleRoutes = ["/donationshome", "/userdashboard", "/my-profile"];
+const userAccesibleRoutes = [
+  "/donationshome",
+  "/userdashboard",
+  "/my-profile",
+  "/changepassword",
+];
 const rolesRedirect: Record<string, unknown> = {
   // doctor: `http://localhost:3000/doctor/dashboard`,
   user: `${process.env.NEXT_PUBLIC_API}/my-profile`,
@@ -50,11 +55,11 @@ export const config = {
     "/login",
     "/register",
     //user routes
+    "/changepassword",
     "/donationshome",
     "/userdashboard",
     "/my-profile",
-    //doctor routes
-    //"/doctor/:page*",
+
     //admin routes
     "/admins/:page*",
   ],

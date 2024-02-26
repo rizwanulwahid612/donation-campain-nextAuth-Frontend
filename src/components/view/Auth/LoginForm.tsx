@@ -1,5 +1,5 @@
 "use client";
-import { Button, Col, Form, Input, Row } from "antd";
+import { Button, Col, Form, Input, Row, message } from "antd";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,6 +23,7 @@ const LoginForm: React.FC = () => {
     });
      console.log(result, "result");
     if (result?.ok && !result.error) {
+      message.success("user login successfully")
       router.refresh();
       router.push("/");
     }
@@ -41,9 +42,6 @@ const LoginForm: React.FC = () => {
         minHeight: "10vh",
       }}
     >
-      {/* <Col sm={12} md={16} lg={10}>
-         <Image src={logImage} alt="" width={200} height={150}/>
-      </Col> */}
       <Col>
         <h1
           style={{
@@ -85,13 +83,16 @@ const LoginForm: React.FC = () => {
       </Form.Item>
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+        <Link  href="/forgot-password">Forgot password? </Link>
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
       </Form.Item>
     </Form>
+    
     <div style={{display:"flex"}}>
-    <p>If you did not Registered!,Please...</p><Link href="/register">Register </Link>
+      
+    <p>If you did not Registered!,Please...</p><Link href="/create-link-for-user">Register </Link>
     </div>
     </div>
     </Col>

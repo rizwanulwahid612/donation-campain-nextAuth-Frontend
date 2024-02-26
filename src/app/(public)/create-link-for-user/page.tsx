@@ -1,22 +1,25 @@
+
 "use client"
-import { Button, Form, Input, message } from 'antd';
-//import Link from 'next/link';
+import { Button, Col, Form, Input, Row, message } from 'antd';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React from 'react'
+import signinimg from "../../../assets/Sign up-bro.svg"
+import conte from '../../../styles/singleproduct.module.css'
 type FieldType = {
   name?:string;
   image?:string;
   email?: string;
   password?: string;
 };
-const CreateAdmin = () => {
+const CreateLinkRegisterForm = () => {
  const router = useRouter();
   const onFinish = async (values: FormData) => {
     console.log(values)
     try {
-     // http://localhost:5000/api/v1
-      const response = await fetch(`https://donation-server-opal.vercel.app/api/v1/users/create-admin`, {
-     // const response = await fetch(`http://localhost:5000/api/v1/users/create-admin`, {  
+     
+      const response = await fetch(`https://donation-server-opal.vercel.app/api/v1/users/create-link-for-user`, {
+      //const response = await fetch(`https://donation-server-opal.vercel.app/api/v1/users/create-user`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -25,11 +28,11 @@ const CreateAdmin = () => {
       });
 
       if (!response.ok) {
-        message.error("Admin did not create")
+        throw new Error('Failed to submit form');
       }else{
         router.refresh();
-      
-      message.success("Admin created SuccessFully")
+       router.push("/");
+      message.success("Please Check Mail & Go to User Registration Link ")
       }
 
       const responseData = await response.json();
@@ -44,8 +47,20 @@ const CreateAdmin = () => {
     console.log("Failed:", errorInfo);
   };
   return (
-    <div>
-      <h1 style={{marginBottom:"30px"}}>Create Admin Form</h1>
+    <div style={{display:"flex",justifyContent:"center"}}>
+       <Row
+    className={conte.container}
+      justify="space-between"
+      align="middle"
+      style={{
+        marginTop:"70px",
+        minHeight: "0vh",
+      }}
+    >
+      <Col>
+      
+    <div style={{display:"block",justifyContent:"center",alignItems:"center",textAlign:"center"}}>
+      <h1 style={{marginBottom:"30px"}}>Verify Your Email before Registration & Check Your mail </h1>
     <Form
       name="basic"
       labelCol={{ span: 8 }}
@@ -92,9 +107,14 @@ const CreateAdmin = () => {
         </Button>
       </Form.Item>
     </Form>
-    
+    <div style={{display:"flex",marginBottom:"40px"}}>
+    <p>If you are already Registered!,Please...</p><Link href="/login">Login </Link>
+    </div>
+    </div>
+    </Col>
+    </Row>
     </div>
   )
 }
 
-export default CreateAdmin
+export default CreateLinkRegisterForm

@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth";
 const PublicHeader = async () => {
   const items = [
     { key: "1", label: "Home", href: "/" },
-    // { key: "2", label: "Services", href: "/available-services" }
+    { key: "2", label: "Contact", href: "/contactpage" }
   ];
   const session: any = await getServerSession(authOptions);
   return (

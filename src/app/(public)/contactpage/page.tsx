@@ -1,14 +1,11 @@
 "use client"
 import { Button, Form, Input, message } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 type FieldType = {
-  title: string;
-  category: string;
-  image: string;
-  price?: string;
+  name: string;
+  email: string;
   description: string;
 };
 const DonationCreate = () => {
@@ -16,8 +13,8 @@ const DonationCreate = () => {
   const onFinish = async (values: FormData) => {
     console.log(values)
     try {
-       //const response = await fetch(`http://localhost:5000/api/v1/donations/create-donate`, {
-      const response = await fetch(`https://donation-server-opal.vercel.app/api/v1/donations/create-donate`, {
+       const response = await fetch(`https://donation-server-opal.vercel.app/api/v1/users/create-contact`, {
+      //const response = await fetch(`https://donation-server-opal.vercel.app/api/v1/donations/create-donate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,12 +23,10 @@ const DonationCreate = () => {
       });
 
       if (!response.ok) {
-        message.error("Donation was not created")
+        message.error("message was not send")
       }else{
         router.refresh();
-        router.push("/admins/donationlist");
-      
-      message.success("Donation created SuccessFully")
+      message.success("SuccessFully send Your message")
       }
 
       const responseData = await response.json();
@@ -46,8 +41,10 @@ const DonationCreate = () => {
     console.log("Failed:", errorInfo);
   };
   return (
-    <div>
-      <h1 style={{marginBottom:"30px"}}>Create Donation Form</h1>
+    <>
+    <h1 style={{textAlign:"center",margin:"40px"}}>Contact Form</h1>
+    <div style={{alignItems:"center",justifyContent:"center",display:"flex"}}>
+      
     <Form
       name="basic"
       labelCol={{ span: 8 }}
@@ -59,40 +56,25 @@ const DonationCreate = () => {
       autoComplete="off"
     >
       <Form.Item<FieldType>
-        label="Title"
-        name="title"
-        rules={[{ required: true, message: "Please input Title!" }]}
+        label="Name"
+        name="name"
+        rules={[{ required: true, message: "Please input your name!" }]}
       >
         <Input type="text" />
       </Form.Item>
       <Form.Item<FieldType>
-        label="Image"
-        name="image"
-        rules={[{ required: true, message: "Please input Image url!" }]}
+        label="Email"
+        name="email"
+        rules={[{ required: true, message: "Please input your email!" }]}
       >
-        <Input type="text" />
-      </Form.Item>
-      <Form.Item<FieldType>
-        label="Price"
-        name="price"
-        rules={[{ required: true, message: "Please input Price!" }]}
-      >
-        <Input type="text" />
-      </Form.Item>
-
-      <Form.Item<FieldType>
-        label="Category"
-        name="category"
-        rules={[{ required: true, message: "Please input Category!" }]}
-      >
-        <Input type="text" />
+        <Input type="email" />
       </Form.Item>
 
       <Form.Item<FieldType>
        
         label="Description"
         name="description"
-        rules={[{  message: "Please input Description!" }]}
+        rules={[{required: true,  message: "Please input Description!" }]}
       >
          <TextArea rows={4} />
       </Form.Item>
@@ -105,7 +87,9 @@ const DonationCreate = () => {
     </Form>
     
     </div>
+    </>
   )
+  
 }
 
 export default DonationCreate

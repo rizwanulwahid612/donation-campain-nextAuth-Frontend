@@ -6,17 +6,30 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import signinimg from "../../../assets/Sign up-bro.svg"
 import conte from '../../../styles/singleproduct.module.css'
-type FieldType = {
-  name?:string;
-  image?:string;
-  email?: string;
-  password?: string;
-};
-const RegisterForm = () => {
+// type FieldType = {
+//   name?:string;
+//   image?:string;
+//   email?: string;
+//   password?: string;
+// };
+const RegisterForm = ({email,image,name,password}:{email:any,image:any,name:any,password:any}) => {
  const router = useRouter();
+   const initialValue: {
+    email:string,
+    image:string,
+    name:string,
+    password:string,
+  } = {
+    email,
+    image,
+    name,
+    password,
+  };
   const onFinish = async (values: FormData) => {
     console.log(values)
     try {
+      //http://localhost:5000/api/v1
+      //const response = await fetch(`http://localhost:5000/api/v1/users/create-user`, {
       const response = await fetch(`https://donation-server-opal.vercel.app/api/v1/users/create-user`, {
         method: 'POST',
         headers: {
@@ -54,10 +67,6 @@ const RegisterForm = () => {
         minHeight: "0vh",
       }}
     >
-      
-      {/* <Col sm={12} md={16} lg={10} style={{marginTop:"180px"}}>
-         <Image src={signinimg} alt="" width={200} height={150}/>
-      </Col> */}
       <Col>
       
     <div style={{display:"block",justifyContent:"center",alignItems:"center",textAlign:"center"}}>
@@ -72,31 +81,35 @@ const RegisterForm = () => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
-      <Form.Item<FieldType>
+      <Form.Item
         label="Name"
         name="name"
+        initialValue={initialValue.name}
         rules={[{ required: true, message: "Please input your Name!" }]}
       >
         <Input type="text" />
       </Form.Item>
-      <Form.Item<FieldType>
+      <Form.Item
         label="Image"
         name="image"
+        initialValue={initialValue.image}
         rules={[{ required: true, message: "Please input your Image url!" }]}
       >
         <Input type="text" />
       </Form.Item>
-      <Form.Item<FieldType>
+      <Form.Item
         label="Email"
         name="email"
+        initialValue={initialValue.email}
         rules={[{ required: true, message: "Please input your email!" }]}
       >
         <Input type="email" />
       </Form.Item>
 
-      <Form.Item<FieldType>
+      <Form.Item
         label="Password"
         name="password"
+        initialValue={initialValue.password}
         rules={[{ required: true, message: "Please input your password!" }]}
       >
         <Input.Password />
@@ -108,9 +121,7 @@ const RegisterForm = () => {
         </Button>
       </Form.Item>
     </Form>
-    <div style={{display:"flex",marginBottom:"40px"}}>
-    <p>If you are already Registered!,Please...</p><Link href="/login">Login </Link>
-    </div>
+    
     </div>
     </Col>
     </Row>

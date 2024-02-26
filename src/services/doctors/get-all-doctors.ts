@@ -25,7 +25,9 @@ export const getAllDoctors = async (
     }, [] as string[])
     .join("&");
   const res = await fetch(
+    //http://localhost:5000/api/v1
     `https://donation-server-opal.vercel.app/api/v1/doctors?${queryString}`,
+    //`http://localhost:5000/api/v1/doctors?${queryString}`,
     {
       headers: {
         "Content-Type": "application/json",

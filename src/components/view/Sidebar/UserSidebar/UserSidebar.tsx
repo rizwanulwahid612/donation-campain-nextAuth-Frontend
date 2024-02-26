@@ -5,7 +5,7 @@ const UserSidebar = ({ children }: { children: React.ReactNode }) => {
   const items = [
     // { key: "1", label: "Donations Home", href: "/donationshome" },
     { key: "1", label: "My Profile", href: "/my-profile" },
-    // { key: "3", label: "User Dashboard", href: "/userdashboard" },
+    { key: "2", label: "Change Password", href: "/changepassword" },
   ];
   return <Sidebar items={items}>{children}</Sidebar>;
 };

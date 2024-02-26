@@ -3,25 +3,28 @@ import DonationDetails from "@/components/view/DonationDetails/DonationDetails"
 import { getServerSession } from "next-auth"
 
 
-// export const generateStaticParams=async()=> {
-//     const res = await fetch("http://localhost:5000/api/v1/donations",{
-//         next:{
-//             revalidate:2,
-//         }
-//     })
-//     const postdata = await res.json()
-//     const ids = postdata?.data?.map((post:any) => {
-//         return {
-//             id: post?._id + " "
-//         }
+export const generateStaticParams=async()=> {
+    //http://localhost:5000/api/v1
+     const res = await fetch("https://donation-server-opal.vercel.app/api/v1/donations",{
+    //const res = await fetch("http://localhost:5000/api/v1/donations",{
+        next:{
+            revalidate:2,
+        }
+    })
+    const postdata = await res.json()
+    const ids = postdata?.data?.map((post:any) => {
+        return {
+            id: post?._id + " "
+        }
 
-//     })
-//     console.log("ids",ids)
-//     return ids
-// }
+    })
+    console.log("ids",ids)
+    return ids
+}
 const PostpageById = async ({ params }:{params:any}) => {
     console.log("params:",params.id)
     const res = await fetch(`https://donation-server-opal.vercel.app/api/v1/donations/${params.id}`,{
+     //const res = await fetch(`http://localhost:5000/api/v1/donations/${params.id}`,{    
         cache:"no-store"
     })
     const postby = await res.json()

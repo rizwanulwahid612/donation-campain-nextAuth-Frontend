@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 
 export const createDoctor = async (data: any) => {
   const res = await fetch(
+    //`http://localhost:5000/api/v1/doctors/create-doctor`,
     `https://donation-server-opal.vercel.app/api/v1/doctors/create-doctor`,
     {
       method: "POST",

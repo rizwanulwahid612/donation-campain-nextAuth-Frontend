@@ -16,10 +16,4 @@ export const postdonationApi = baseApi.injectEndpoints({
     }),
   }),
 });
-export const {
-  //useAddCategoryMutation,
-  useAddSingledonationpostMutation,
-  //useCategoryQuery,
-  //useDeleteCategoryMutation,
-  //useUpdateCategoryMutation,
-} = postdonationApi;
+export const { useAddSingledonationpostMutation } = postdonationApi;

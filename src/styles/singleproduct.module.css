@@ -1,6 +1,7 @@
 .container {
     display: flex;
     gap: 10px;
+    
 }
 
 /* Media query for screens below 700px */
@@ -8,6 +9,7 @@
     .container {
         /* display: block; */
         flex-direction: column-reverse;
+        
     }
 
     /* Style for the image */
